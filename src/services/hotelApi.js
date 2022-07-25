@@ -8,7 +8,7 @@ export const hotelApi = createApi({
     baseUrl: "https://sandbox.impala.travel/v1/",
     prepareHeaders: (headers) => {
       headers.set("x-api-key", API_KEY );
-      headers.set("Access-Control-Allow-Origin", "http://localhost:3000" );
+      headers.set("Access-Control-Allow-Origin", "*" );
       headers.set("Content-Type", "application/json" );
       return headers;
     },
