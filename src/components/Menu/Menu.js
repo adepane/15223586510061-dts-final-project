@@ -17,8 +17,8 @@ const Menu = () => {
           key={item.text}
           className={({ isActive }) =>
             isActive
-              ? "py-4 px-2 text-blue-500 border-b-4 border-blue-500 font-semibold"
-              : "py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
+              ? "py-4 px-4 text-blue-500 border-b-4 border-blue-500 font-semibold"
+              : "py-4 px-4 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
           }
         >
           {item.text}
