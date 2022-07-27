@@ -5,7 +5,7 @@ const Banner = () => {
     return (
       <header className="relative flex items-center justify-center h-screen overflow-hidden mt-[-4rem]">
         <div className="relative z-30 bg-black bg-opacity-50 h-full w-full">
-          <div className="absolute inset-y-10 left-20 justify-center text-white w-full">
+          <div className="absolute inset-y-10 left-10 md:left-20 justify-center text-white w-full">
             <div className="flex flex-col items-center justify-center h-full font-poppins font-semibold	">
               <span className="text-5xl w-full">Spend your vacation</span>
               <span className="text-5xl w-full">with our service</span>

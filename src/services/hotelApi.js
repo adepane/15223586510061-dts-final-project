@@ -7,7 +7,7 @@ export const hotelApi = createApi({
   }),
   endpoints: (builder) => ({
     hotelDeals: builder.query({
-      query: () => `/hotels`,
+      query: () => `/hotels?size=4&starRating[gt]=4`,
     }),
   }),
   overrideExisting: false,
