@@ -9,7 +9,7 @@ const Home = () => {
   const { data = [], isLoading, isError } = useHotelDealsQuery();
   const loaded = isLoading ? <Loader /> : <Deals data={data.data} />;
     return (
-      <div className="h-full">
+      <div className="h-full pb-5">
         <Banner />
         <div className="flex">{isError ? <div>Error</div> : loaded}</div>
         <Discover />

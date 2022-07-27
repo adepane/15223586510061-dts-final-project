@@ -32,8 +32,8 @@ const country = [
 const Discover = () => {
     return (
       <div className="p-1 md:py-5 md:px-10 pt-3">
-        <h2 class="md:w-full text-left md:ml-10">
-          <span class="bg-white px-3 text-2xl font-poppins font-extrabold">
+        <h2 className="md:w-full text-left md:ml-10">
+          <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
             Discover by country
           </span>
         </h2>
@@ -52,7 +52,7 @@ const Discover = () => {
                     className="rounded-md max-w-full max-h-full"
                     title={item.name}
                   />
-                  <div class="opacity-80 md:opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-xl text-white font-semibold font-poppins bg-black bg-opacity-70 p-2 rounded-md">
+                  <div className="opacity-80 md:opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-xl text-white font-semibold font-poppins bg-black bg-opacity-70 p-2 rounded-md">
                     {item.name}
                   </div>
                 </div>

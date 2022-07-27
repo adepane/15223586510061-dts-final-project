@@ -4,8 +4,8 @@ import Card from "../Card/Card";
 const Deals = ({data}) => {
     return (
       <div className="p-1 md:py-5 md:px-10 pt-3">
-        <h2 class="md:w-full text-left md:ml-10">
-          <span class="bg-white px-3 text-2xl font-poppins font-extrabold">
+        <h2 className="md:w-full text-left md:ml-10">
+          <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
             Top Rated Hotel
           </span>
         </h2>

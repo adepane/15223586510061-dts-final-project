@@ -11,7 +11,7 @@ const Card = ({title, img, desc, rating, rooms, roomType, country, currency}) =>
             className="object-cover h-full rounded-md items-center justify-center"
           />
         </div>
-        <div className="relative px-4 -mt-6  ">
+        <div className="relative px-4 -mt-14  ">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <div className="flex items-baseline">
               <span className="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  capitalize font-semibold tracking-wide">
