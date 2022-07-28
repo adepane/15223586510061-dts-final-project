@@ -53,8 +53,9 @@ const Discover = ({ data }) => {
         >
           {carouselData.map((item, index) => (
             <Link
-              to={`/hotels/${item.hotelId}`}
+              to={`/hotel/${item.address.country}/${item.hotelId}?lat=${item.location.latitude}&lon=${item.location.longitude}`}
               className="scale-50 hover:scale-175 ease-in duration-500"
+              key={index}
             >
               <Card
                 title={item.name.replace("[SANDBOX]", "")}

@@ -10,7 +10,7 @@ const Navbar = () => {
     }; 
 
     return (
-      <nav className="sticky top-0 z-50 bg-white">
+      <nav className="sticky top-0 z-50 bg-white drop-shadow	">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between align-center">
             <div className="flex w-full">

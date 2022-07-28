@@ -10,6 +10,10 @@ module.exports = {
         bounce200: "bounce 1s infinite 200ms",
         bounce400: "bounce 1s infinite 400ms",
       },
+      zIndex: {
+        100: "100",
+        1001: "1001",
+      },
     },
   },
   plugins: [],

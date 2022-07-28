@@ -7,10 +7,19 @@ export const hotelApi = createApi({
   }),
   endpoints: (builder) => ({
     hotel: builder.query({
-        query: () => `/hotels`
+      query: () => `/hotels`,
+    }),
+    hotelById: builder.query({
+      query: (id) => `/hotels/${id}`,
     }),
     hotelDeals: builder.query({
       query: () => `/hotels?size=4&starRating[gt]=4`,
+    }),
+    hotelSearch: builder.query({
+      query: (param) => `/hotels?${param}`,
+    }),
+    hotelRate: builder.query({
+      query: (id) => `/hotels/${id}/rate-plans`,
     }),
   }),
   overrideExisting: false,
@@ -18,5 +27,8 @@ export const hotelApi = createApi({
 
 export const  {
     useHotelQuery,
+    useHotelByIdQuery,
     useHotelDealsQuery,
+    useHotelRateQuery,
+    useHotelSearchQuery,
 } = hotelApi;
