@@ -6,6 +6,9 @@ export const hotelApi = createApi({
     baseUrl: "https://hotel-api.blubit.xyz/api/",
   }),
   endpoints: (builder) => ({
+    hotel: builder.query({
+        query: () => `/hotels`
+    }),
     hotelDeals: builder.query({
       query: () => `/hotels?size=4&starRating[gt]=4`,
     }),
@@ -14,5 +17,6 @@ export const hotelApi = createApi({
 });
 
 export const  {
+    useHotelQuery,
     useHotelDealsQuery,
 } = hotelApi;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchForm = () => {
+const SearchForm = ({className}) => {
     const handleSearch = (e) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
@@ -8,8 +8,8 @@ const SearchForm = () => {
         console.log(location);
     }
     return (
-      <form onSubmit={handleSearch}>
-        <div className="hidden md:flex flex-col">
+      <form onSubmit={handleSearch} className={className}>
+        <div className="flex flex-col w-full">
           <div className="bg-white bg-opacity-50 p-6 rounded-xl shadow-lg">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
               <div className="flex flex-col">

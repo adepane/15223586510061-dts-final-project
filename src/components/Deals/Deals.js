@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 
 const Deals = ({data}) => {
@@ -9,9 +10,9 @@ const Deals = ({data}) => {
             Top Rated Hotel
           </span>
         </h2>
-        <div className="w-full h-full grid grid-cols-1 md:grid-cols-4 gap-2 -mt-4 px-5 pt-4 border-t border-gray-400 rounded-md">
-          {data.map((item, index) => {
-            return (
+        <div className="w-full h-full grid grid-cols-1 md:grid-cols-4 gap-2 -mt-4 px-5 pt-5 border-t border-gray-400 rounded-md">
+          {data.map((item, index) => (
+            <Link to={`/hotels/${item.hotelId}`}>
               <Card
                 title={item.name.replace("[SANDBOX]", "")}
                 img={item.images[0].url}
@@ -23,8 +24,8 @@ const Deals = ({data}) => {
                 currency={item.currency}
                 key={index}
               />
-            );
-          })}
+            </Link>
+          ))}
         </div>
       </div>
     );

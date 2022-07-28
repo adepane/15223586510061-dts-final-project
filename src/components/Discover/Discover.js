@@ -1,66 +1,77 @@
 import React from "react";
+import Carousel from "react-multi-carousel";
+import Card from "../Card/Card";
+import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 
-const country = [
-  {
-    name: "United States",
-    code: "USA",
-    img: "https://images.unsplash.com/photo-1541535650810-10d26f5c2ab3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80",
-  },
-  {
-    name: "United Kingdom",
-    code: "GBR",
-    img: "https://images.unsplash.com/photo-1561234311-a9e16fa60b25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  },
-  {
-    name: "Germany",
-    code: "DEU",
-    img: "https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  },
-  {
-    name: "France",
-    code: "FRA",
-    img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2946&q=80",
-  },
-  {
-    name: "Italy",
-    code: "ITA",
-    img: "https://images.unsplash.com/photo-1581876804153-74295c0f59e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  },
-];
+const Discover = ({ data }) => {
+  const carouselData = data.filter((item) => item.images.length > 0);
 
-const Discover = () => {
-    return (
-      <div className="p-1 md:py-5 md:px-10 pt-3">
-        <h2 className="md:w-full text-left md:ml-10">
-          <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
-            Discover by country
-          </span>
-        </h2>
-        <div className="w-full h-full grid grid-cols-1 md:grid-cols-5 gap-2 -mt-4 px-5 pt-4 border-t border-gray-400 rounded-md">
-          {country.map((item, index) => {
-            return (
-              <Link
-                className="mt-3"
-                to={`/search?country[eq]=${item.code}`}
+  return (
+    <div className="p-1 md:py-5 md:px-10 pt-3 w-full">
+      <h2 className="md:w-full text-left md:ml-10">
+        <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
+          Browse the Hotels
+        </span>
+      </h2>
+      <div className="w-full w-full h-full -mt-4 px-5 pt-5 border-t border-gray-400 rounded-md overflow-hidden">
+        <Carousel
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className="flex w-full"
+          containerClass="carousel-container"
+          dotListClass=""
+          draggable={false}
+          focusOnSelect={false}
+          infinite
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={100}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={{
+            desktop: {
+              breakpoint: {
+                max: 3000,
+                min: 1024,
+              },
+              items: 4,
+              slidesToSlide: 3, // optional, default to 1.
+            },
+            mobile: {
+              breakpoint: {
+                max: 600,
+                min: 0,
+              },
+              items: 1,
+            },
+          }}
+        >
+          {carouselData.map((item, index) => (
+            <Link
+              to={`/hotels/${item.hotelId}`}
+              className="scale-50 hover:scale-175 ease-in duration-500"
+            >
+              <Card
+                title={item.name.replace("[SANDBOX]", "")}
+                img={item.images[0].url}
+                desc={item.desc}
+                rating={item.starRating}
+                rooms={item.roomCount}
+                roomType={item.roomTypes.length}
+                country={item.address.city}
+                currency={item.currency}
                 key={index}
-              >
-                <div className="relative rounded-full">
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    className="rounded-md max-w-full max-h-full"
-                    title={item.name}
-                  />
-                  <div className="opacity-80 md:opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-xl text-white font-semibold font-poppins bg-black bg-opacity-70 p-2 rounded-md">
-                    {item.name}
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+              />
+            </Link>
+          ))}
+        </Carousel>
       </div>
-    );
-}
+    </div>
+  );
+};
 export default Discover;
