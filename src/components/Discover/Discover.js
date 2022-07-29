@@ -5,7 +5,8 @@ import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 
 const Discover = ({ data, title }) => {
-  // console.log(data)
+
+  console.log(data)
   const carouselData = data.filter((item) => item.images.length > 0);
 
   return (
@@ -57,6 +58,7 @@ const Discover = ({ data, title }) => {
               to={`/hotel/${item.address.country}/${item.hotelId}?lat=${item.location.latitude}&lon=${item.location.longitude}`}
               className="scale-50 hover:scale-175 ease-in duration-500"
               key={index}
+              state={item}
             >
               <Card
                 title={item.name.replace("[SANDBOX]", "")}

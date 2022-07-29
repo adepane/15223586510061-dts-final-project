@@ -12,7 +12,7 @@ const Deals = ({data}) => {
         </h2>
         <div className="w-full h-full grid grid-cols-1 md:grid-cols-4 gap-2 -mt-4 px-5 pt-5 border-t border-gray-400 rounded-md">
           {data.map((item, index) => (
-            <Link to={`/hotel/${item.address.country}/${item.hotelId}?lat=${item.location.latitude}&lon=${item.location.longitude}`} key={index}>
+            <Link to={`/hotel/${item.address.country}/${item.hotelId}?lat=${item.location.latitude}&lon=${item.location.longitude}`} key={index} state={item}>
               <Card
                 title={item.name.replace("[SANDBOX]", "")}
                 img={item.images[0].url}
