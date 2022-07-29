@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const Discover = ({ data, title }) => {
 
-  console.log(data)
   const carouselData = data.filter((item) => item.images.length > 0);
 
   return (

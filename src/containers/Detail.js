@@ -1,62 +1,80 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import DetailBanner from "../components/Detail/DetailBanner";
 import DetailCarousel from "../components/Detail/DetailCarousel";
 import DetailMaps from "../components/Detail/DetailMaps";
 import Discover from "../components/Discover/Discover";
 import Loader from "../components/Loader/Loader";
 import Room from "../components/Rooms/Rooms";
-import {
-  useHotelSearchQuery,
-} from "../services/hotelApi";
+import { useHotelByIdQuery, useHotelSearchQuery } from "../services/hotelApi";
 
 const Detail = () => {
-  const location = useLocation();
-  const state = location.state;
+  const params = useParams();
+  const [searchParam] = useSearchParams();
+  const latitude = searchParam.get("lat");
+  const longitude = searchParam.get("lon");
+  const { data, isLoading, isSuccess, isError } = useHotelByIdQuery(params.id);
   const {
-    data,
-    isLoading,
-    isError,
+    data: neighbourData,
+    isLoading: neighbourDataIsLoading,
+    isError: neighbourDataIsError,
+    isSuccess: neighbourDataIsSuccess,
   } = useHotelSearchQuery(
-    `country[eq]=${state.address.country}&latitude=${state.location.latitude}&longitude=${state.location.longitude}&radius=10000`
+    `country[eq]=${params.country}&latitude=${latitude}&longitude=${longitude}&radius=10000`,
+    { skip: !isSuccess }
   );
   const {
     data: countryData,
     isLoading: countryDataIsLoading,
     isError: countryDataIsError,
-  } = useHotelSearchQuery(`country[eq]=${state.address.country}`);
-  const neighbourLoaded = isLoading ? (
+  } = useHotelSearchQuery(`country[eq]=${params.country}`, {
+    skip: !neighbourDataIsSuccess,
+  });
+  const detailLoaded = isLoading ? (
     <Loader />
+  ) : isSuccess ? (
+    <>
+      <DetailBanner data={data} />
+      <DetailCarousel data={data} />
+      <DetailMaps latitude={latitude} longitude={longitude} />
+      <Room rooms={data.roomTypes} />
+    </>
   ) : (
-    (<div className="md:px-5">
-      <Discover
-        data={data.data.filter(item => item.hotelId !== state.hotelId)}
-        title={`There are ${
-          data.data.length - 1
-        } Hotels near ${state.name.replace("[SANDBOX]", "")}`}
-      />
-    </div>)
+    <div>Something Wrong</div>
   );
-  const countryLoaded = countryDataIsLoading ? (
-    <Loader />
-  ) : (
-    <div className="md:px-5">
-      <Discover
-        data={countryData.data}
-        title={`These are Hotels in ${state.address.countryName}`}
-      />
-    </div>
-  );
+
+  const neighbourLoaded =
+    isLoading || neighbourDataIsLoading ? (
+      <Loader />
+    ) : (
+      <div className="md:px-5">
+        <Discover
+          data={neighbourData.data}
+          title={`There are ${
+            neighbourData.data.length - 1
+          } Hotels near ${data.name.replace("[SANDBOX]", "")}`}
+        />
+      </div>
+    );
+  const countryLoaded =
+    isLoading || neighbourDataIsLoading || countryDataIsLoading ? (
+      <Loader />
+    ) : (
+      <div className="md:px-5">
+        <Discover
+          data={countryData.data}
+          title={`These are Hotels in ${data.address.countryName}`}
+        />
+      </div>
+    );
   return (
     <>
-      <DetailBanner data={state} />
-      <DetailCarousel data={state} />
-      <DetailMaps
-        latitude={state.location.latitude}
-        longitude={state.location.longitude}
-      />
-      <Room rooms={state.roomTypes} />
-      {isError ? <div>Sorry something wrong.</div> : neighbourLoaded}
+      {isError ? <div>Sorry something wrong.</div> : detailLoaded}
+      {neighbourDataIsError ? (
+        <div>Sorry something wrong.</div>
+      ) : (
+        neighbourLoaded
+      )}
       {countryDataIsError ? <div>Sorry something wrong.</div> : countryLoaded}
     </>
   );
