@@ -5,7 +5,7 @@ export const navItems = [
   { text: "Home", link: "/" },
   { text: "Deals", link: "/deals" },
   { text: "My Booking", link: "/my-booking" },
-  { text: "Whitelist", link: "/my-list" },
+  { text: "Wishlist", link: "/my-list" },
 ];
 
 const Menu = () => {

@@ -4,14 +4,15 @@ import Card from "../Card/Card";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 
-const Discover = ({ data }) => {
+const Discover = ({ data, title }) => {
+  // console.log(data)
   const carouselData = data.filter((item) => item.images.length > 0);
 
   return (
     <div className="p-1 md:py-5 md:px-10 pt-3 w-full">
       <h2 className="md:w-full text-left md:ml-10">
         <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
-          Browse the Hotels
+          {title}
         </span>
       </h2>
       <div className="w-full w-full h-full -mt-4 px-5 pt-5 border-t border-gray-400 rounded-md overflow-hidden">

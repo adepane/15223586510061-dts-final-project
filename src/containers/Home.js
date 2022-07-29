@@ -12,7 +12,7 @@ const Home = () => {
   const { data = [], isLoading, isError } = useHotelDealsQuery();
   const { data: allData = [], isLoading: allDataIsLoading, isError: allDataIsError } = useHotelQuery();
   const loadDeals = isLoading ? <Loader /> : <Deals data={data.data} />;
-  const loadCarousel = allDataIsLoading ? <Loader /> : <Discover data={allData.data} />;
+  const loadCarousel = allDataIsLoading ? <Loader /> : <Discover data={allData.data} title="Browse the hotels" />;
     return (
       <div className="h-full pb-5">
         <Banner />

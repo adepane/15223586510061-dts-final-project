@@ -24,7 +24,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <footer className="p-4 pt-20 bg-white shadow md:px-6 md:py-8 dark:bg-gray-900">
+        <footer className="p-4 pt-20 bg-gray-900 shadow md:px-6 md:py-8">
           <div className="sm:flex sm:items-center sm:justify-between">
             <Link to={"/"} className="flex items-center mb-4 sm:mb-0">
               <img

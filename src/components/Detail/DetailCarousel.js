@@ -1,17 +1,17 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Modal from "../Modal/Modal";
 
 const DetailCarousel = ({ data }) => {
-  const modalImg = useRef(null);
-  const modalContainer = useRef(null);
-  const showModal = (src) => {
-    modalContainer.current.classList.remove("hidden");
-    modalImg.current.src = src;
-  };
-  const closeModal = () => {
-    modalContainer.current.classList.add("hidden");
-  };
+  const [open, setOpen] = useState(false);
+  const [source, setSource] = useState("");
+
+  const handleClick = (src) => {
+    setOpen(true);
+    setSource(src)
+  }
+  
   return (
     <div className="relative w-full h-72 px-5 md:px-20">
       <Carousel
@@ -51,37 +51,21 @@ const DetailCarousel = ({ data }) => {
         }}
       >
         {data.images.map((item, index) => (
-          <div className="h-full overflow-hidden flex flex-col justify-center">
+          <div
+            className="h-full overflow-hidden flex flex-col justify-center"
+            key={index}
+          >
             <img
               src={item.url}
               alt={data.name}
               className="p-1 cursor-pointer relative"
               key={index}
-              onClick={() => showModal(item.url)}
+              onClick={() => handleClick(item.url)}
             />
           </div>
         ))}
       </Carousel>
-      <div
-        ref={modalContainer}
-        className="hidden fixed top-0 left-0 z-1001 w-screen h-screen bg-black bg-opacity-80 flex justify-center items-center duration-500"
-      >
-        <div className="relative w-100 h-100 flex justify-center items-center">
-          <button
-            className="absolute z-1001 top-10 right-10 w-10 h-10  
-                       bg-sky-800 hover:bg-black-500 text-white"
-            onClick={closeModal}
-          >
-            X
-          </button>
-
-          <img
-            ref={modalImg}
-            className="md:h-screen object-contain p-10"
-            alt=""
-          />
-        </div>
-      </div>
+      <Modal state={open} source={source} />
     </div>
   );
 };
