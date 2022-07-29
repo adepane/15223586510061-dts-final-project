@@ -27,12 +27,12 @@ const country = [
 const DiscoverType = () => {
   return (
     <div className="p-1 md:py-5 md:px-10 pt-3">
-      <h2 className="md:w-full text-left md:ml-10">
-        <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
+      <h2 className="md:w-full text-left px-8">
+        <span className="bg-white text-2xl font-poppins font-extrabold">
           Browse by type
         </span>
       </h2>
-      <div className="w-full h-full grid grid-cols-1 md:grid-cols-4 gap-2 -mt-4 px-5 pt-5 border-t border-gray-400 rounded-md">
+      <div className="w-full h-full grid grid-cols-1 md:grid-cols-4 gap-2 -mt-4 px-5 pt-5 md:border-t md:border-gray-400 md:rounded-md">
         {country.map((item, index) => {
           return (
             <Link

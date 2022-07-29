@@ -32,18 +32,19 @@ const country = [
 const DiscoverCountry = () => {
     return (
       <div className="p-1 md:py-5 md:px-10 pt-3">
-        <h2 className="md:w-full text-left md:ml-10">
-          <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
+        <h2 className="md:w-full text-left px-8">
+          <span className="bg-white text-2xl font-poppins font-extrabold">
             Browse by country
           </span>
         </h2>
-        <div className="w-full h-full  pt-5 grid grid-cols-1 md:grid-cols-5 gap-2 -mt-4 px-5 border-t border-gray-400 rounded-md">
+        <div className="w-full h-full  pt-5 grid grid-cols-1 md:grid-cols-5 gap-2 -mt-4 px-5 md:border-t md:border-gray-400 md:rounded-md">
           {country.map((item, index) => {
             return (
               <Link
                 className="mt-3"
                 to={`/search?country[eq]=${item.code}`}
                 key={index}
+                state={item}
               >
                 <div className="relative">
                   <img

@@ -10,12 +10,12 @@ const Discover = ({ data, title }) => {
 
   return (
     <div className="p-1 md:py-5 md:px-10 pt-3 w-full">
-      <h2 className="md:w-full text-left md:ml-10">
-        <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
+      <h2 className="md:w-full text-left px-8">
+        <span className="bg-white text-2xl font-poppins font-extrabold">
           {title}
         </span>
       </h2>
-      <div className="w-full w-full h-full -mt-4 px-5 pt-5 border-t border-gray-400 rounded-md overflow-hidden">
+      <div className="w-full w-full h-full -mt-4 px-5 pt-5 md:border-t md:border-gray-400 md:rounded-md overflow-hidden">
         <Carousel
           additionalTransfrom={0}
           arrows
