@@ -3,7 +3,7 @@ import React from "react";
 const Room = ({ rooms }) => {
   const sampleRoom = rooms.length > 0 ? rooms[0] : {};
   return (
-    <div className="p-1 md:py-16 md:px-10 pt-3 w-full">
+    <div className="p-1 md:py-10 md:pb-2 md:px-10 pt-3 w-full">
       <h2 className="md:w-full text-left md:ml-10">
         <span className="bg-white px-3 text-2xl font-poppins font-extrabold">
           Picture of rooms
