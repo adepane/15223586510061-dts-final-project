@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../config/firebase";
 import Menu from "../Menu/Menu";
 import MobileMenu from "../Menu/MobileMenu";
 
@@ -8,6 +10,44 @@ const Navbar = () => {
     const handleToggle = () => {
         mobileMenu.current.classList.toggle("hidden");
     }; 
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+      await auth.signOut();
+      navigate("/");
+    };
+    const loggedUser = user ? (
+      (console.log(user),
+      (
+        <>
+          <span className="py-2 px-2 font-medium text-gray-500">
+            Hi, {user.displayName ? user.displayName : user.email.split("@")[0]}
+          </span>
+          <Link
+            to={"#"}
+            className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300"
+            onClick={handleLogout}
+          >
+            Logout
+          </Link>
+        </>
+      ))
+    ) : (
+      <>
+        <Link
+          to={"/login"}
+          className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300"
+        >
+          Login
+        </Link>
+        <Link
+          to={"/register"}
+          className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300"
+        >
+          Register
+        </Link>
+      </>
+    );
 
     return (
       <nav className="sticky top-0 z-50 bg-white drop-shadow	">
@@ -21,13 +61,8 @@ const Navbar = () => {
               </div>
               <Menu />
             </div>
-            <div className="hidden md:flex items-center space-x-3">
-              <Link
-                to={"/login"}
-                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300"
-              >
-                LogIn
-              </Link>
+            <div className="hidden md:flex items-center space-x-3 w-1/3 justify-end">
+              {loggedUser}
             </div>
             <div className="md:hidden flex items-center">
               <button
@@ -50,7 +85,7 @@ const Navbar = () => {
           </div>
         </div>
         <ul className="hidden mobile-menu" ref={mobileMenu}>
-          <MobileMenu />
+          <MobileMenu state={mobileMenu} />
         </ul>
       </nav>
     );
