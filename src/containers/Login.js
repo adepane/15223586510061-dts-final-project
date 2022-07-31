@@ -13,7 +13,6 @@ const Login = () => {
     const data = new FormData(e.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
-    console.log(email, password);
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         navigate("/");
@@ -65,7 +64,7 @@ const Login = () => {
             </div>
             <form onSubmit={handleSubmit}>
               <div className="flex flex-row items-center justify-center lg:justify-start">
-                <p className="text-lg mb-0 mr-4">Sign in with</p>
+                <p className="text-lg mb-0 mr-4">One click in with</p>
                 <button
                   type="button"
                   data-mdb-ripple="true"

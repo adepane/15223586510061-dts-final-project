@@ -17,7 +17,6 @@ const Navbar = () => {
       navigate("/");
     };
     const loggedUser = user ? (
-      (console.log(user),
       (
         <>
           <span className="py-2 px-2 font-medium text-gray-500">
@@ -31,7 +30,7 @@ const Navbar = () => {
             Logout
           </Link>
         </>
-      ))
+      )
     ) : (
       <>
         <Link

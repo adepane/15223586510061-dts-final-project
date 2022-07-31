@@ -60,7 +60,21 @@ const Search = () => {
     const searchLoaded = isLoading ? (
       <Loader />
     ) : isSuccess ? (
-        (data.data.length > 0) ? (<SearchContainer data={data.data.filter(item => item.images.length > 0)} location={locationName} country={countryName} />) : <>Nothing found</>
+      data.data.length > 0 ? (
+        <SearchContainer
+          data={data.data.filter((item) => item.images.length > 0)}
+          location={locationName}
+          country={countryName}
+        />
+      ) : (
+        <div className="py-10">
+          <h2 className="md:w-full text-left px-8 pb-4">
+            <span className="bg-white text-3xl font-poppins font-extrabold">
+              Sorry, There is no properties found
+            </span>
+          </h2>
+        </div>
+      )
     ) : (
       ""
     );
