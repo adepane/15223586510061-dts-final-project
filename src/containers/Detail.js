@@ -49,10 +49,10 @@ const Detail = () => {
     ) : (
       <div className="md:px-5">
         <Discover
-          data={neighbourData.data}
-          title={`There are ${
-            neighbourData.data.length - 1
-          } Hotels near ${data.name.replace("[SANDBOX]", "")}`}
+          data={neighbourData.data.filter((item) => item.hotelId !== params.id)}
+          title={`There are ${neighbourData.data.length - 1} Hotel${
+            neighbourData.data.length - 1 > 1 ? "s" : ""
+          } near ${data.name.replace("[SANDBOX]", "")}`}
         />
       </div>
     );

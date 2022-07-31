@@ -18,6 +18,7 @@ const SearchForm = ({ className }) => {
   useEffect(() => {
     searchQuery.current.value = queryParam.get("name[like]");
   }, [queryParam]);
+  
   return (
     <form onSubmit={handleSearch} className={className}>
       <div className="flex flex-col w-full">

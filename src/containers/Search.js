@@ -1,6 +1,6 @@
 import { skipToken } from "@reduxjs/toolkit/dist/query";
 import React from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Card from "../components/Card/Card";
 import Loader from "../components/Loader/Loader";
 import SearchForm from "../components/SearchForm/SearchForm";
@@ -12,7 +12,7 @@ const SearchContainer = ({data, location, country}) => {
         <h2 className="md:w-full text-left px-8 pb-4">
           <span className="bg-white text-2xl font-poppins font-extrabold">
             {location
-              ? `Result of ${location} has ${data.length} hotels`
+              ? `Result of ${location} has ${data.length} properties`
               : `Top Rated Hotel in ${country}`}
           </span>
         </h2>
@@ -60,9 +60,9 @@ const Search = () => {
     const searchLoaded = isLoading ? (
       <Loader />
     ) : isSuccess ? (
-        (data.data.length > 0) ? (<SearchContainer data={data.data} location={locationName} country={countryName} />) : <>Nothing found</>
+        (data.data.length > 0) ? (<SearchContainer data={data.data.filter(item => item.images.length > 0)} location={locationName} country={countryName} />) : <>Nothing found</>
     ) : (
-      <div>Something Wrong</div>
+      ""
     );
     return(
         <div className="h-full pb-5 p-4 md:px-20">
