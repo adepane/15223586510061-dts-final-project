@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider, twitterProvider } from "../config/firebase";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirect = location.state ? location.state : "/";
   const [errors, setErrors] = useState("");
   const errRef = useRef();
 
@@ -15,7 +17,7 @@ const Login = () => {
     const password = data.get("password");
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        navigate("/");
+        navigate(redirect);
       })
       .catch((err) => {
         setErrors("Email / Password is incorrect");
@@ -26,7 +28,7 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        navigate("/");
+        navigate(redirect);
       })
       .catch((error) => {
         setErrors("There is something wrong with your credentials");
@@ -37,7 +39,7 @@ const Login = () => {
   const handleTwitterSignIn = () => {
     signInWithPopup(auth, twitterProvider)
       .then((result) => {
-        navigate("/");
+        navigate(redirect);
       })
       .catch((error) => {
         setErrors("There is something wrong with your credentials");
