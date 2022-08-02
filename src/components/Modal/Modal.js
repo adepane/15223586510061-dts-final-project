@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from "react";
 
-const Modal = (props) => {
+const Modal = ({state}) => {
     const modalImg = useRef(null);
     const modalContainer = useRef(null);
 
     useEffect(() => {
-      if (!props.state) return;
+      if (!state.open) return;
       modalContainer.current.classList.remove("hidden");
-      modalImg.current.src = props.source;
-    }, [props.state, props.source]);
+      modalImg.current.src = state.source;
+    }, [state]);
 
     const closeModal = () => {
       modalContainer.current.classList.add("hidden");

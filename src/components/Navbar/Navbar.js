@@ -10,28 +10,26 @@ const Navbar = () => {
     const handleToggle = () => {
         mobileMenu.current.classList.toggle("hidden");
     }; 
-    const [user] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
     const handleLogout = async () => {
       await auth.signOut();
       navigate("/");
     };
     const loggedUser = user ? (
-      (
-        <>
-          <span className="py-2 px-2 font-medium text-gray-500">
-            Hi, {user.displayName ? user.displayName : user.email.split("@")[0]}
-          </span>
-          <Link
-            to={"#"}
-            className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300"
-            onClick={handleLogout}
-          >
-            Logout
-          </Link>
-        </>
-      )
-    ) : (
+      <>
+        <span className="py-2 px-2 font-medium text-gray-500">
+          Hi, {user.displayName ? user.displayName : user.email.split("@")[0]}
+        </span>
+        <Link
+          to={"#"}
+          className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300"
+          onClick={handleLogout}
+        >
+          Logout
+        </Link>
+      </>
+    ) : !loading ? (
       <>
         <Link
           to={"/login"}
@@ -46,6 +44,10 @@ const Navbar = () => {
           Register
         </Link>
       </>
+    ) : (
+      <span className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300">
+        Loading...
+      </span>
     );
 
     return (
