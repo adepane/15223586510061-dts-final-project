@@ -9,6 +9,7 @@ import Login from "./containers/Login";
 import NotFound from "./containers/NotFound";
 import Register from "./containers/Register";
 import Search from "./containers/Search";
+import Wishlist from "./containers/Wishlist";
 
 function App() {
   const location = useLocation();
@@ -18,6 +19,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route
+          path="/my-list"
+          element={
+            <ProtectedRoute loginOnly={true}>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/hotel/:country/:id"
           element={
@@ -45,7 +54,9 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {location.pathname !== "/login" && location.pathname !== "/register" && <NewsLetter />}
+      {location.pathname !== "/login" && location.pathname !== "/register" && (
+        <NewsLetter />
+      )}
       <Footer />
     </div>
   );

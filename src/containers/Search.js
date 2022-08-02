@@ -68,8 +68,8 @@ const Search = () => {
         />
       ) : (
         <div className="py-10">
-          <h2 className="md:w-full text-left px-8 pb-4">
-            <span className="bg-white text-3xl font-poppins font-extrabold">
+          <h2 className="md:w-full text-left px-8 pb-4 ">
+            <span className="bg-white text-3xl font-poppins font-extrabold flex justify-center">
               Sorry, There is no properties found
             </span>
           </h2>

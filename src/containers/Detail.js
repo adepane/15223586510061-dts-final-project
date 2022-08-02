@@ -67,6 +67,7 @@ const Detail = () => {
         />
       </div>
     );
+  
   return (
     <>
       {isError ? <div>Sorry something wrong.</div> : detailLoaded}
