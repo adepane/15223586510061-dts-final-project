@@ -19,6 +19,7 @@ const Menu = () => {
           <NavLink
             to={item.link}
             key={item.text}
+            state={item.link}
             className={({ isActive }) =>
               isActive
                 ? "py-4 px-4 text-blue-500 border-b-4 border-blue-500 font-semibold"

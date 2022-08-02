@@ -57,7 +57,7 @@ const Discover = ({ data, title }) => {
               to={`/hotel/${item.address.country}/${item.hotelId}?lat=${item.location.latitude}&lon=${item.location.longitude}`}
               className="scale-50 hover:scale-175 ease-in duration-500"
               key={index}
-              state={item}
+              state={`/hotel/${item.address.country}/${item.hotelId}?lat=${item.location.latitude}&lon=${item.location.longitude}`}
             >
               <Card
                 title={item.name.replace("[SANDBOX]", "")}
