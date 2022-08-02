@@ -18,21 +18,6 @@ const Footer = () => {
             </Link>
             <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
               <li>
-                <Link to={"/about"} className="mr-4 hover:underline md:mr-6">
-                  About
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/adepane/15223586510061-dts-final-project"
-                  className="mr-4 hover:underline md:mr-6 "
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Source
-                </a>
-              </li>
-              <li>
                 <a
                   href="https://www.linkedin.com/in/adepane/"
                   className="mr-4 hover:underline md:mr-6 "
