@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
@@ -13,6 +14,13 @@ import Wishlist from "./containers/Wishlist";
 
 function App() {
   const location = useLocation();
+  useEffect(() => {
+    const handleScroll = () => {
+      window.scroll({ top: 0, behavior: "smooth" });
+    };
+    handleScroll();
+  }, [location]);
+  
   return (
     <div className="App">
       <Navbar />
